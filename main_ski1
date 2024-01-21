@@ -33,7 +33,12 @@ m_140124_l = soup.find_all('td', class_='table-responsive__row-item _gap')
 
 
 #нужно только топ-10
+amount = 0
+if len(m_140124_n)>=10:
+    amount = 10
+elif len(m_140124_n)<10:
+    amount = len(m_140124_n)
 time = 1
-for i in range(10):
+for i in range(amount):
     print(time, out_yellow(m_140124_n[i].text.strip()), out_white(m_140124_t[i].text.strip()), out_red(m_140124_r[i].text.strip()), out_blue(m_140124_l[i].text.strip()))
     time+=1
