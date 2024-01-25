@@ -1,49 +1,72 @@
 from bs4 import BeautifulSoup
 
-def take_information(cite):
-    with open(cite) as file:
+PATH_TO_HTML1 = '/Users/pavel/Downloads/PATH_TO_HTML1.html'
+PATH_TO_HTML2 = '/Users/pavel/Downloads/PATH_TO_HTML2.html'
+PATH_TO_HTML3 = '/Users/pavel/Downloads/PATH_TO_HTML3.html'
+PATH_TO_HTML4 = '/Users/pavel/Downloads/PATH_TO_HTML4.html'
+PATH_TO_HTML5 = '/Users/pavel/Downloads/PATH_TO_HTML5.html'
+PATH_TO_HTML6 = '/Users/pavel/Downloads/PATH_TO_HTML6.html'
+PATH_TO_HTML7 = '/Users/pavel/Downloads/PATH_TO_HTML7.html'
+PATH_TO_HTML8 = '/Users/pavel/Downloads/PATH_TO_HTML8.html'
+PATH_TO_HTML9 = '/Users/pavel/Downloads/PATH_TO_HTML9.html'
+PATH_TO_HTML10 = '/Users/pavel/Downloads/PATH_TO_HTML10.html'
+PATH_TO_HTML11 = '/Users/pavel/Downloads/PATH_TO_HTML11.html'
+PATH_TO_HTML12 = '/Users/pavel/Downloads/PATH_TO_HTML12.html'
+PATH_TO_HTML13 = '/Users/pavel/Downloads/PATH_TO_HTML13.html'
+PATH_TO_HTML14 = '/Users/pavel/Downloads/PATH_TO_HTML14.html'
+PATH_TO_HTML15 = '/Users/pavel/Downloads/PATH_TO_HTML15.html'
+PATH_TO_HTML16 = '/Users/pavel/Downloads/PATH_TO_HTML16.html'
+PATH_TO_HTML17 = '/Users/pavel/Downloads/PATH_TO_HTML17.html'
+PATH_TO_HTML18 = '/Users/pavel/Downloads/PATH_TO_HTML18.html'
+PATH_TO_HTML19 = '/Users/pavel/Downloads/PATH_TO_HTML19.html'
+PATH_TO_HTML20 = '/Users/pavel/Downloads/PATH_TO_HTML20.html'
+PATH_TO_HTML21 = '/Users/pavel/Downloads/PATH_TO_HTML21.html'
+PATH_TO_HTML22 = '/Users/pavel/Downloads/PATH_TO_HTML22.html'
+PATH_TO_HTML23 = '/Users/pavel/Downloads/PATH_TO_HTML23.html'
+PATH_TO_HTML24 = '/Users/pavel/Downloads/PATH_TO_HTML24.html'
+
+def openFile():
+    with open('/Users/pavel/Downloads/PATH_TO_HTML24.html') as file:
         src = file.read()
+    return src
+
+#soup = BeautifulSoup(openFile(), 'lxml')
     
-    soup = BeautifulSoup(src, 'lxml')
-
-
-    def out_red(text):
-        print("\033[31m{}".format(text))
+def getItems():
+    name = soup.find_all('td', class_='table-responsive__row-item _player')
+    #name[0].text.strip()
     
-    def out_yellow(text):
-        print("\033[33m {}" .format(text))
+    time = soup.find_all('td', class_='table-responsive__row-item _team _tablet')
+    #time[0].text.strip()
+
+    region = soup.find_all('td', class_='table-responsive__row-item _result _tablet')
+    #region[0].text.strip()
+
+    backlog = soup.find_all('td', class_='table-responsive__row-item _gap')
+    #backlog[3].text.strip()
     
-    def out_white(text):
-        print("\033[37m {}" .format(text))
+    race = soup.find('div', class_='match-info__game')
+    #race.text.strip()
     
-    def out_blue(text):
-        print("\033[34m {}" .format(text))
+    stage = soup.find('div', class_='match-info__stage')
+    #stage.text.strip()
     
-
-    m_140124_n = soup.find_all('td', class_='table-responsive__row-item _player')
-    #m_140124_n[0].text.strip()
+    date = soup.find('div', class_='match-info__title')
+    #date.text.strip()
     
-    m_140124_t = soup.find_all('td', class_='table-responsive__row-item _team _tablet')
-    #m_140124_t[0].text.strip()
+    number = soup.find('div', class_='match-info__title')
+    #date.text.strip()
+    
+    time_ = 1
+    for i in range(len(name)):
+        print(time_, name, time)
+  
+def main():
+    def openFile():
+    soup = BeautifulSoup(openFile(), 'lxml')
+    def getItems():
+        
+want = int(input(2 - если результат гонки))
 
-    m_140124_r = soup.find_all('td', class_='table-responsive__row-item _result _tablet')
-    #m_140124_r[0].text.strip()
-
-    m_140124_l = soup.find_all('td', class_='table-responsive__row-item _gap')
-    #m_140124_l[0].text.strip()
-
-
-    #нужно только топ-10
-    amount = 0
-    if len(m_140124_n)>=10:
-        amount = 10
-    elif len(m_140124_n)<10:
-        amount = len(m_140124_n)
-    time = 1
-    for i in range(amount):
-        print(time, out_yellow(m_140124_n[i].text.strip()), out_white(m_140124_t[i].text.strip()), out_red(m_140124_r[i].text.strip()), out_blue(m_140124_l[i].text.strip()))
-        time+=1
-
-#путь до сайта нужно заливать в кавычках  
-#работает для все гонок(муж. и жен.)     
-#take_information('way.html')
+if want==2:
+    main()
