@@ -21,10 +21,12 @@ def getItems(soup):
 
     for item in rows:
         try:
+            rank = item.select('td:nth-child(2)')[0].text.strip()
             name = item.find('span', class_='table-item__name').text
             team = item.find('td', class_='_team').find('a').text
 
             obj = {
+                'rank': rank,
                 'name': name,
                 'team': team,
             }
@@ -33,7 +35,7 @@ def getItems(soup):
         except:
             pass
 
-    print(result)
+    print(result[5])
   
 def main():
     soup = getSoup('./html/file1.html')
