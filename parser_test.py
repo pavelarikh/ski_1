@@ -34,12 +34,23 @@ def getItems(soup):
             result.append(obj)
         except:
             pass
+    
+    return result
 
-    print(result[5])
-  
+def get_by_name(name, results):
+    finded = []
+
+    for result in results:
+        if result['name'] == name:
+            finded.append(result)
+    
+    return finded
+
 def main():
     soup = getSoup('./html/file1.html')
-    getItems(soup)
+    result = getItems(soup)
+    print(get_by_name('Полина Милузова', result))
+
 
 if __name__ == "__main__": 
     main()
