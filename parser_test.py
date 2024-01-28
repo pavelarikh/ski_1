@@ -26,10 +26,15 @@ def getItems(soup):
             rank = item.select('td:nth-child(2)')[0].text.strip()
             name = item.find('span', class_='table-item__name').text
             team = item.find('td', class_='_team').find('a').text
+            result_ = item.select('td:nth-child(5)')[0].text.strip()
+            gap = item.select('td:nth-child(6)')[0].text.strip()
+            
             obj = {
                 'rank': rank,
                 'name': name,
                 'team': team,
+                'result_': result_,
+                'gap': gap
             }
             result.append(obj)
         except:
@@ -42,16 +47,16 @@ def get_by_name(name, results):
 
     for result in results:
         if result['name'] == name:
-            finded.append(result)
+             finded.append(result)
 
     return finded
 
 def main():
-    soup = getSoup(path_to_html24)
+    soup = getSoup(const.PATH_TO_HTML24)
     getItems(soup)
     result = getItems(soup)
-    print(get_by_name('Александр Большунов', result))
-
+    name = input('Введите имя, чтобы выдать результаты всех гонок):')
+    print(get_by_name(name, result))
 
 if __name__ == "__main__": 
     main()
