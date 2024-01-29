@@ -1,6 +1,6 @@
 import const
 from bs4 import BeautifulSoup
-from utils import openFile, createSoup, getSoup
+from utils import openFile, createSoup, getSoup, get_by_name, get_by_team
 from requests import getItems
 
 def main(path, name):
