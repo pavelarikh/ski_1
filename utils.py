@@ -1,3 +1,6 @@
+from bs4 import BeautifulSoup
+from requests import getItems
+
 def openFile(path):
     with open(path) as file:
         src = file.read()
@@ -14,14 +17,10 @@ def getSoup(path):
 
 def get_by_name(name, results):
     finded = []
-
-    print(results) # проверяем, что результаты не пустые
     
     for result in results:
         if result['name'] == name:
-             finded.append(result)
-
-    print(finded) # проверяем, что фильтры работают
+            finded.append(result)
      
     return finded
 
@@ -41,10 +40,9 @@ def printResults(path, key, option='by_name'):
     
     if option == 'by_name':
         requested = get_by_name(key, result)[0]
+        print(f"Команда: {requested['team']} Место: {requested['rank']}")
     elif option == 'by_team':
         requested = get_by_team(key, result)[0]
+        #print(f"{requested['rank']} {requested['name']} {requested['team']} {requested['result_']} {requested['gap']}")
     else:
         pass # заглушка; в будущем здесь будем вызывать ошибку
-
-    print(f'{requested['compition']}:')
-    print(f'{requested['rank']} {requested['name']} {requested['team']} {requested['result_']} {requested['gap']}')
