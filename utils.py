@@ -30,15 +30,15 @@ def get_by_team(team, results):
 
     return finded
 
-def printResults(path, name, option='by_name'):
+def printResults(path, key, option='by_name'):
     soup = getSoup(path)
     getItems(soup)
     result = getItems(soup)
     
     if option == 'by_name':
-        requested = get_by_name(name, result)[0]
+        requested = get_by_name(key, result)[0]
     elif option == 'by_team':
-        requested = get_by_team(team, result)[0]
+        requested = get_by_team(key, result)[0]
     else:
         pass # заглушка; в будущем здесь будем вызывать ошибку
 
