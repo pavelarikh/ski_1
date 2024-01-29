@@ -1,22 +1,7 @@
-from bs4 import BeautifulSoup
-
 import const
+from bs4 import BeautifulSoup
+from utils import openFile, createSoup, getSoup
 
-def openFile(path):
-    with open(path) as file:
-        src = file.read()
-    return src
-
-def createSoup(file):
-    soup = BeautifulSoup(file, 'lxml')
-    return soup
-
-def getSoup(path):
-    file = openFile(path)
-    soup = createSoup(file)
-    return soup
-
-    
 def getItems(soup):
     rows = soup.find_all('tr', class_='table-responsive__row')
     
