@@ -15,10 +15,14 @@ def getSoup(path):
 def get_by_name(name, results):
     finded = []
 
+    print(results) # проверяем, что результаты не пустые
+    
     for result in results:
         if result['name'] == name:
              finded.append(result)
 
+    print(finded) # проверяем, что фильтры работают
+     
     return finded
 
 def get_by_team(team, results):
