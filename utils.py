@@ -18,12 +18,12 @@ def getSoup(path):
 def get_by_name(name, results):
     finded = []
     
-    print('hhh', results)
-    
     for result in results:
         if result['name'] == name:
             finded.append(result)
-     
+    
+
+    print(finded)
     return finded
 
 def get_by_team(team, results):
@@ -45,8 +45,11 @@ def printResults(path):
     while choice != '5':
         if choice == '1':
             key = input('Введите имя, чтобы выдать результаты всех гонок):\n')
-            get_by_name(key, result)
-            #requested = get_by_name(key, result)[0]
+            requested = get_by_name(key, result)
+            try: 
+                requested = requested[0]
+            except:
+                pass
         elif choice == '2':
             key = input('Введите команду, чтобы выдать результаты всех гонок):\n')
             requested = get_by_team(key, result)[0]
@@ -56,5 +59,8 @@ def printResults(path):
             pass # в будущем вывод топ-3 всех гонок 
         else:
             pass # заглушка; в будущем здесь будем вызывать ошибку
-    
-        print(f'{requested['rank']} {requested['name']} {requested['team']} {requested['result_']} {requested['gap']}')
+        
+        try:
+            print(f"{requested['rank']} {requested['name']} {requested['team']} {requested['result_']} {requested['gap']}")
+        except:
+            pass
