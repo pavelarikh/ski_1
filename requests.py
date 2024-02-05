@@ -1,6 +1,8 @@
 def getItems(soup):
     rows = soup.find_all('tr', class_='table-responsive__row')
-    
+
+    compition = soup.find('div', class_='match-info__game').text
+
     result = []
     for item in rows:
         try:
@@ -9,9 +11,6 @@ def getItems(soup):
             team = item.find('td', class_='_team').find('a').text
             result_ = item.select('td:nth-child(5)')[0].text.strip()
             gap = item.select('td:nth-child(6)')[0].text.strip()
-            compition = soup.find('div', class_='match-info__game').text.strip()
-            
-            #print('Взяли ли результаты:', compition)
 
             obj = {
                 'rank': rank,
@@ -25,4 +24,4 @@ def getItems(soup):
         except:
             pass
 
-    print(result)
+    return result

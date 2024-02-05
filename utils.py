@@ -18,8 +18,6 @@ def getSoup(path):
 def get_by_name(name, results):
     finded = []
     
-    print('hhh', results)
-    
     for result in results:
         if result['name'] == name:
             finded.append(result)
@@ -31,30 +29,34 @@ def get_by_team(team, results):
 
     for result in results:
         if result['team'] == team:
-             finded.append(result)
+            finded.append(result)
 
     return finded
 
-def printResults(path):
+def get_by_game(results):
+    finded = []
+
+    for result in results:
+        finded.append(result)
+
+    return finded
+
+def printResults(path, key, option='by_name'):
     soup = getSoup(path)
     getItems(soup)
     result = getItems(soup)
     
-    choice = input('1-все результаты по ФИО, 2-все результаты гонок по команде, 3-результаты гонки по названию и дате, 4-результаты всех гонок, 5-завершить\n')    
-    
-    while choice != '5':
-        if choice == '1':
-            key = input('Введите имя, чтобы выдать результаты всех гонок):\n')
-            get_by_name(key, result)
-            #requested = get_by_name(key, result)[0]
-        elif choice == '2':
-            key = input('Введите команду, чтобы выдать результаты всех гонок):\n')
-            requested = get_by_team(key, result)[0]
-        elif choice == '3':
-            pass # в будущем функция определиния результата по названию гонке и дате
-        elif choice == '4':
-            pass # в будущем вывод топ-3 всех гонок 
+    if option == 'by_name':
+        requested = get_by_name(key, result)[0]
+        if len(requested['gap']) > 0:
+            print(f"Команда: {requested['team']} Место: {requested['rank']} Название: {requested['compition']} Отставание: {requested['gap']} Результат: {requested['result_']}")
         else:
-            pass # заглушка; в будущем здесь будем вызывать ошибку
-    
-        print(f'{requested['rank']} {requested['name']} {requested['team']} {requested['result_']} {requested['gap']}')
+            print(f"Команда: {requested['team']} Место: {requested['rank']} Название: {requested['compition']} Результат: {requested['result_']}")
+    elif option == 'by_team':
+        requested = get_by_team(key, result)
+        for item in requested:
+            print(f"{item['rank']} {item['name']} {item['team']} {item['result_']} {item['gap']}")
+    elif option == 'by_game':
+        get_by_game(result)
+    else:
+        pass # заглушка; в будущем здесь будем вызывать ошибку
